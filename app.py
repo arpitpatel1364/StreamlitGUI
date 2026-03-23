@@ -48,13 +48,13 @@ def parse_snippet(snippet: str):
 
 
 def find_best_weights():
-    candidates = sorted(glob.glob("runs/detect/train*/weights/best.pt"),
+    candidates = sorted(glob.glob("VisionForge/runs/detect/train*/weights/best.pt"),
                         key=os.path.getmtime, reverse=True)
     return candidates[0] if candidates else None
 
 
 def find_results_image():
-    candidates = sorted(glob.glob("runs/detect/train*/results.png"),
+    candidates = sorted(glob.glob("VisionForge/runs/detect/train*/results.png"),
                         key=os.path.getmtime, reverse=True)
     return candidates[0] if candidates else None
 
@@ -139,7 +139,7 @@ def run_training_thread(cfg: dict, log_q: queue.Queue, proc_holder: list):
 
 # ── Header ────────────────────────────────────────────────────────────────────
 st.title("⚡ VisionForge — Model Training Studio")
-st.caption("Roboflow · Ultralytics YOLOv8  —  No Flask required")
+st.caption("Roboflow · Ultralytics YOLOv8  — Streamlit")
 st.divider()
 
 # ══════════════════════════════════════════════════════════════════════════════
