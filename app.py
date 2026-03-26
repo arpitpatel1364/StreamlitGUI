@@ -136,6 +136,8 @@ def run_training_thread(cfg: dict, log_q: queue.Queue, proc_holder: list):
 
 
 
+
+
 st.title("⚡ VisionForge — Model Training Studio")
 st.caption("Roboflow · Ultralytics YOLOv8  — Streamlit")
 st.divider()
