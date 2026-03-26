@@ -4,7 +4,7 @@ Train custom YOLOv8 object detection models from your Roboflow dataset using a s
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 visionforge/
@@ -14,7 +14,7 @@ visionforge/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 pip install -r requirements.txt
@@ -27,7 +27,7 @@ Open your browser at `http://localhost:8501`
 
 ---
 
-## 🖥️ How the UI Works
+## How the UI Works
 
 The app is divided into 4 steps. Complete them top to bottom.
 
@@ -85,7 +85,7 @@ After training finishes, `results.png` is read from the most recent `runs/detect
 
 ---
 
-## 📦 Requirements
+## Requirements
 
 ```
 streamlit
@@ -95,7 +95,7 @@ That's it. Everything else is auto-installed at training time.
 
 ---
 
-## 💡 Tips
+## Tips
 
 - **YOLOv8n** trains fastest — good for testing your dataset and config before committing to a long run
 - **YOLOv8m** gives the best accuracy but needs a GPU for reasonable training time
