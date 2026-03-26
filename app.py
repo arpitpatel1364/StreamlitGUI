@@ -137,14 +137,11 @@ def run_training_thread(cfg: dict, log_q: queue.Queue, proc_holder: list):
         log_q.put("__DONE__")
 
 
-# ── Header ────────────────────────────────────────────────────────────────────
+
 st.title("⚡ VisionForge — Model Training Studio")
 st.caption("Roboflow · Ultralytics YOLOv8  — Streamlit")
 st.divider()
 
-# ══════════════════════════════════════════════════════════════════════════════
-# STEP 1 — Roboflow Snippet
-# ══════════════════════════════════════════════════════════════════════════════
 st.subheader("Step 1 · Roboflow Dataset")
 
 snippet = st.text_area(
@@ -181,9 +178,7 @@ if st.session_state.parsed:
 
 st.divider()
 
-# ══════════════════════════════════════════════════════════════════════════════
-# STEP 2 — Hyperparameters
-# ══════════════════════════════════════════════════════════════════════════════
+
 st.subheader("Step 2 · Hyperparameters")
 
 col1, col2, col3 = st.columns(3)
@@ -207,7 +202,8 @@ cancel_clicked = b2.button(
     use_container_width=True,
 )
 
-# ── Start ─────────────────────────────────────────────────────────────────────
+# after start 
+
 if start_clicked and st.session_state.parsed:
     cfg = {
         **st.session_state.parsed,
@@ -229,12 +225,11 @@ if start_clicked and st.session_state.parsed:
     ).start()
     st.rerun()
 
-# ── Cancel ────────────────────────────────────────────────────────────────────
 if cancel_clicked and st.session_state.proc_holder[0] is not None:
     try:
         os.killpg(os.getpgid(st.session_state.proc_holder[0].pid), signal.SIGINT)
         st.session_state.training_started = False
-        st.session_state.log_queue.put("⚠ Training cancelled by user.")
+        st.session_state.log_queue.put("Training cancelled by user.")
         st.session_state.log_queue.put("__DONE__")
         st.warning("⚠ Cancel signal sent.")
     except Exception as e:
@@ -242,9 +237,6 @@ if cancel_clicked and st.session_state.proc_holder[0] is not None:
 
 st.divider()
 
-# ══════════════════════════════════════════════════════════════════════════════
-# STEP 3 — Live Log
-# ══════════════════════════════════════════════════════════════════════════════
 st.subheader("Step 3 · Live Training Log")
 
 if not st.session_state.training_started and not st.session_state.training_done:
@@ -282,10 +274,10 @@ else:
 
     # Render status + log
     if st.session_state.training_done or done:
-        status_box.success("✅ Training complete!")
+        status_box.success("Training complete!")
         progress_bar.progress(100)
     else:
-        status_box.info("🟢 Training running…")
+        status_box.info("Training running…")
         progress_bar.progress(pct)
 
     log_box.code(
@@ -309,9 +301,6 @@ else:
 
 st.divider()
 
-# ══════════════════════════════════════════════════════════════════════════════
-# STEP 4 — Results
-# ══════════════════════════════════════════════════════════════════════════════
 if st.session_state.training_done:
     st.subheader("Step 4 · Training Results")
     img_path = find_results_image()
